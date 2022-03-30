@@ -54,6 +54,8 @@ LANG=C fakeroot debian/rules editconfigs
 ```
 Nach der letzten Zeile bestätigen Sie die Frage „Do you want to edit config: amd64/config.flavour.generic? [Y/n]“ mit der Enter-Taste. Das Modul ntfs3 („NTFS Read-Write file system support“ und ksmbd („SMB3 server support“) sind bereits aktiviert, weshalb Sie nur auf „Exit“ gehen und mit „Yes“ bestätigen müssen. Danach erfolgt in der gleichen Weise die Konfiguration für „amd64/config.flavour.lowlatency“.
 
+![](https://github.com/Myria-de/build-mainline-kernel/blob/main/106_01_Config.png?raw=true)
+
 **Schritt 5:** Die Zeile
 ```
 LANG=C fakeroot debian/rules binary-headers binary-generic binary-perarch
@@ -64,6 +66,8 @@ cd ~/kernel
 sudo dpkg -i *.deb
 ```
 Danach starten Sie Linux neu, um das System mit dem neuen Kernel zu laden.
+
+![](https://github.com/Myria-de/build-mainline-kernel/blob/main/106_02_dpkg.png?raw=true)
 
 ## 2. NTFS-Modul verwenden
 Laden Sie das NTFS-Modul im Terminal mit
