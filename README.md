@@ -1,6 +1,12 @@
 # build-mainline-kernel
 Build mainline Linux kernel for Ubuntu and Linux Mint
 
+**Der aktuelle Linux-Kernel 5.15 bietet interessante Funktionen für alle Nutzer. Wer möchte, kann den Kernel schon jetzt auch unter Ubuntu 20.04 oder Linux Mint 20 einsetzen.**
+
+Bei der Kernel-Version 5.15 sind zwei spannende Funktionen hinzugekommen. Neu ist ein eigenes Modul für Dateifreigaben über das SMB/CIFS-Protokoll, wofür bisher der Samba-Server diente. Das Kernel-Modul soll vor allem für mehr Geschwindigkeit bei der Datenübertragung sorgen.
+
+Eine weitere Neuerung ist ein Treiber für das NTFS-Dateisystem mit Lese- und Schreibzugriff und mit verbesserter Leitung. Das bisherige Kernel-Modul bietet nur Lesezugriff, weshalb zusätzlich das Paket NTFS-3G erforderlich ist.
+
 ## 1. Vorbereitungen für den neuen Kernel
 
 Aktuelle Kernel für Ubuntu und Linux Mint gibt es zum Download bei https://kernel.ubuntu.com/~kernel-ppa/mainline. Neuere Kernel lassen sich allerdings nur in Ubuntu etwa ab Version 21.10 installieren. Deshalb muss man die Kernel für Ubuntu 20.04 oder Linux Mint 20 selbst erstellen.
@@ -48,7 +54,7 @@ sudo dpkg -i *.deb
 ```
 Danach starten Sie Linux neu, um das System mit dem neuen Kernel zu laden.
 
-## NTFS-Modul verwenden
+## 2. NTFS-Modul verwenden
 Laden Sie das NTFS-Modul im Terminal mit
 ```
 sudo modprobe ntfs3
@@ -69,7 +75,7 @@ in das Dateisystem ein.
 
 Über den Dateimanager werden NTFS-Partitionen weiterhin mithilfe von ntfs-3g eingebunden. Damit das auch mit dem ntfs3-Modul funktioniert, sind einige Änderungen an der Konfiguration nötig.
 
-## Samba-Server konfigurieren
+## 3. Samba-Server konfigurieren
 Für das smb3-Server-Modul benötigen Sie zusätzliche Tools, die Sie erst kompilieren müssen. Dazu verwenden Sie die folgenden sechs Zeilen:
 ```
 sudo apt install autoconf libtool pkg-config libnl-3-dev libnl-genl-3-dev libglib2.0-dev
