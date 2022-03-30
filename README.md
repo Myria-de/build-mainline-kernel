@@ -7,6 +7,17 @@ Bei der Kernel-Version 5.15 sind zwei spannende Funktionen hinzugekommen. Neu is
 
 Eine weitere Neuerung ist ein Treiber für das NTFS-Dateisystem mit Lese- und Schreibzugriff und mit verbesserter Leitung. Das bisherige Kernel-Modul bietet nur Lesezugriff, weshalb zusätzlich das Paket NTFS-3G erforderlich ist.
 
+## Risiken und Nebenwirkungen
+Die Installation eines neueren Kernels ist nur selten mit Problemen verbunden. Da ältere Kernel-Versionen stets erhalten bleiben, kann man bei Problemen schnell auf die vorherige Version wechseln. Dazu hält man beim Start des Rechners die Shift-Taste gedrückt, um in das Grub-Bootmenü zu gelangen. Unter „Erweiterte Optionen für Ubuntu“ beziehungsweise „Erweiterte Optionen für Linux Mint“ lässt sich ein älterer Kernel wählen.
+
+Bei relativ aktuellen Kerneln können zusätzliche Treiber Probleme verursachen. Ist beispielsweise der proprietäre Treiber für einen Nvidia-Grafikchip aktiv, wird dieser bei einem Kernel-Update neu kompiliert. Sollte der Treiber den Kernel noch nicht unterstützen, schlägt das fehl und der Treiber kann nicht geladen werden. In diesem Fall muss man eine neuere Version des Treiberpakets installieren, die mit dem Kernel zusammenarbeitet.
+
+Der Kernel 15.5 wird bei www.kernel.org als stabile Version geführt. Allerdings ist der Code für den NTFS-Treiber noch recht neu, auch wenn er auf einem seit langem genutzten Treiber von Paragon basiert (www.paragon-software.com). Fehler sind daher nicht ausgeschlossen, weshalb vor der Nutzung ein Backup der NTFS-Partition anzuraten ist.
+
+Beim neuen Samba-Modul besteht zwar nicht die Gefahr von Datenverlust, dafür sind aber bisher noch nicht alle Funktionen des Samba-Servers implementiert. Man muss daher ein paar kleine Einschränkungen und Umwege bei der Konfiguration einplanen.
+
+**Hinweis:** Selbst erstellte Kernel sind nicht digital signiert. Damit die Uefi-Firmware den Kernel laden kann, muss im Firmware-Setup die Secure-Boot-Funktion deaktiviert sein.
+
 ## 1. Vorbereitungen für den neuen Kernel
 
 Aktuelle Kernel für Ubuntu und Linux Mint gibt es zum Download bei https://kernel.ubuntu.com/~kernel-ppa/mainline. Neuere Kernel lassen sich allerdings nur in Ubuntu etwa ab Version 21.10 installieren. Deshalb muss man die Kernel für Ubuntu 20.04 oder Linux Mint 20 selbst erstellen.
