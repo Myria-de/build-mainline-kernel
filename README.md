@@ -92,6 +92,11 @@ SUBSYSTEM=="block", ENV{ID_FS_TYPE}=="ntfs", ENV{ID_FS_TYPE}="ntfs3", ENV{UDISKS
 ```
 Kopieren Sie die Datei (als root) in den Ordner "/etc/udev/rules.d"
 
+**Anmerkung:** "UDISKS_FILESYSTEM_SHARED" bietet diese Optionen:
+
+"1": Dateisystem als gemeinsam genutztes Verzeichnis mounten (/media/VolumeName)
+"0": Ubuntu Standard. Dateisystem als privates Verezichnis mounten (/media/$USER/VolumeName)
+
 Erstellen Sie die Textdatei "mount_options.conf" mit diesem Inhalt:
 ```
 [defaults]
@@ -99,6 +104,10 @@ ntfs3_defaults=uid=$UID,gid=$GID,noacsrules,discard
 ntfs3_allow=uid=$UID,gid=$GID,umask,dmask,discard,fmask,locale,norecover,ignore_case,compression,nocompression,big_writes,nls,nohidden,sys_immutable,sparse,showmeta,prealloc,noacsrules
 ```
 Kopieren Sie die Datei (als root) in den Ordner "/etc/udisks2".
+
+**Anmerkungen:** Durch "noacsrules" werden keine speziellen Rechte genutzt werden. Es kann daher nicht zu Zugriffsproblemen kommen, wenn ein anderer Nutzer ein Elemnet im Dateisystem erstellt hat.
+
+"discard" für SSDs (wird bei anderen Laufwerken ignoriert): Online-Discard, da ntfs3 weiterhin (Kernel 5.16.3) kein fstrim unterstützt und deshalb nicht regelmäßig (durch cronjob, systemd-timer) getrimmt werden kann.
 
 Starten Sie Linux neu.
 
