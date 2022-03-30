@@ -84,7 +84,31 @@ sudo mount -t ntfs3 -o uid=1000,gid=1000 /dev/sdd3 /mnt
 ```
 in das Dateisystem ein.
 
-Über den Dateimanager werden NTFS-Partitionen weiterhin mithilfe von ntfs-3g eingebunden. Damit das auch mit dem ntfs3-Modul funktioniert, sind einige Änderungen an der Konfiguration nötig.
+**Datenträger über den Dateimanager einbinden:** Über den Dateimanager werden NTFS-Partitionen weiterhin mithilfe von ntfs-3g eingebunden. Damit das auch mit dem ntfs3-Modul funktioniert, sind Änderungen in der Konfiguration nötig.
+
+Erstellen Sie die Textdatei "75-ntfs3.rules" mit diesem Inhalt:
+```
+SUBSYSTEM=="block", ENV{ID_FS_TYPE}=="ntfs", ENV{ID_FS_TYPE}="ntfs3", ENV{UDISKS_FILESYSTEM_SHARED}="0"
+```
+Kopieren Sie die Datei (als root) in den Ordner "/etc/udev/rules.d"
+
+Erstellen Sie die Textdatei "mount_options.conf" mit diesem Inhalt:
+```
+[defaults]
+ntfs3_defaults=uid=$UID,gid=$GID,noacsrules,discard
+ntfs3_allow=uid=$UID,gid=$GID,umask,dmask,discard,fmask,locale,norecover,ignore_case,compression,nocompression,big_writes,nls,nohidden,sys_immutable,sparse,showmeta,prealloc,noacsrules
+```
+Kopieren Sie die Datei (als root) in den Ordner "/etc/udisks2".
+
+Starten Sie Linux neu.
+
+Binden Sie einen NTFS-Datenträger über den Dateimanager ein (Ubuntu: "Andere Orte").
+
+Im Terminal lässt sich prüfen, dass tatsächlich der NTFS3-Treiber zum Einsatz kommt. Die Ausgabe des Befehls "mount" kann dann beispielsweise so aussehen:
+```
+/dev/sda3 on /media/te/904C9F0E4C9EEE6A type ntfs3 (rw,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8,discard,noacsrules,uhelper=udisks2)
+```
+Hinter "type" steht jetzt "ntfs3" satt vorher "fuseblk".
 
 ## 3. Samba-Server konfigurieren
 Für das smb3-Server-Modul benötigen Sie zusätzliche Tools, die Sie erst kompilieren müssen. Dazu verwenden Sie die folgenden sechs Zeilen:
