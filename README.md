@@ -110,7 +110,7 @@ Kopieren Sie die Datei (als root) in den Ordner "/etc/udisks2".
 
 "discard" für SSDs (wird bei anderen Laufwerken ignoriert): Online-Discard, da ntfs3 weiterhin (Kernel 5.16.3) kein fstrim unterstützt und deshalb nicht regelmäßig (durch cronjob, systemd-timer) getrimmt werden kann.
 
-Starten Sie Linux neu.
+**Starten Sie Linux neu.**
 
 Binden Sie einen NTFS-Datenträger über den Dateimanager ein (Ubuntu: "Andere Orte").
 
