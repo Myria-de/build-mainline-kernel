@@ -95,6 +95,7 @@ Kopieren Sie die Datei (als root) in den Ordner "/etc/udev/rules.d"
 **Anmerkung:** "UDISKS_FILESYSTEM_SHARED" bietet diese Optionen:
 
 "1": Dateisystem als gemeinsam genutztes Verzeichnis mounten (/media/VolumeName)
+
 "0": Ubuntu Standard. Dateisystem als privates Verezichnis mounten (/media/$USER/VolumeName)
 
 Erstellen Sie die Textdatei "mount_options.conf" mit diesem Inhalt:
