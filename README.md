@@ -122,7 +122,7 @@ Im Terminal lässt sich prüfen, dass tatsächlich der NTFS3-Treiber zum Einsatz
 ```
 /dev/sda3 on /media/te/904C9F0E4C9EEE6A type ntfs3 (rw,nosuid,nodev,relatime,uid=1000,gid=1000,iocharset=utf8,discard,noacsrules,uhelper=udisks2)
 ```
-Hinter "type" steht jetzt "ntfs3" satt vorher "fuseblk".
+Hinter "type" steht jetzt "ntfs3" statt vorher "fuseblk".
 
 ## 3. Samba-Server konfigurieren
 Für das smb3-Server-Modul benötigen Sie zusätzliche Tools, die Sie erst kompilieren müssen. Dazu verwenden Sie die folgenden sechs Zeilen:
