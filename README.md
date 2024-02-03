@@ -30,7 +30,7 @@ sudo apt-get build-dep linux linux-image-$(uname -r)
 ```
 Zusätzlich sind diese Pakete erforderlich:
 ```
-sudo apt install git build-essential fakeroot libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf dwarves zstd
+sudo apt install git build-essential fakeroot libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf dwarves zstd debhelper
 ```
 **Schritt 3:** Erstellen Sie einen Arbeitsordner in Ihrem Homeverzeichnis und wechseln Sie in diesen Ordner, beispielsweise mit diesen zwei Befehlszeilen:
 ```
